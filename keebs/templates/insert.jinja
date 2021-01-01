@@ -1,0 +1,6 @@
+{% from "helper.jinja" import render_form %}
+{% extends "layout.jinja" %}
+{% block content %}
+    {{ render_form(keyboard_form, title="Insert Keyboard", id="keyboard_form") }}
+    {{ render_form(keyset_form, title="Insert Keyset", id="keyset_form") }}
+{% endblock content %}

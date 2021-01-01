@@ -1,0 +1,23 @@
+{% macro render_form(form) %}
+    <form method="POST" action="" id="{{ kwargs.id }}" class="{{ kwargs.class }} content-section">
+        {% if kwargs.title %}
+            <h4>{{ kwargs.title }}</h4>
+        {% endif %}
+        {{ form.hidden_tag() }}
+        {% for field in form %}
+            {% if field.type == "SubmitField" %}
+                {{ field(class="btn btn-outline-info") }}
+            {% elif field.type != "CSRFTokenField" %}
+                {{ field.label }}
+                {% if field.errors %}
+                    {{ field(class="form-control is-invalid") }}
+                    {% for error in field.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                {% else %}
+                    {{ field(class="form-control") }}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </form>
+{% endmacro %}

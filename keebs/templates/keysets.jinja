@@ -1,0 +1,17 @@
+{% extends "layout.jinja" %}
+{% block sidebar %}
+    <p class='text-muted'>A list of fancy keysets</p>
+    <li class="list-group-item list-group-item-light">GMK</li>
+    <li class="list-group-item list-group-item-light">SA</li>
+    <li class="list-group-item list-group-item-light">Cherry</li>
+{% endblock sidebar %}
+{% block content %}
+    {% for k in keysets %}
+        <div class="content-section">
+            <a class="mr-2" href="#">{{ k.brand }}</a><small>{{ k.name }}</small>
+            <hr class="divider"/>
+            <h2><a class="article-title" href="#">{{ k.name }}</a></h2>
+            <p>{{ k.name }}</p>
+        </div>
+    {% endfor %}
+{% endblock content %}
