@@ -1,5 +1,5 @@
-{% from "helpers.jinja" import render_form %}
+{% from "macros/form_helper.jinja" import render_form %}
 {% extends "layout.jinja" %}
 {% block content %}
-        {{ render_form(form, id="search_form") }}
+    {{render_form(form, class="content-section")}}
 {% endblock content %}

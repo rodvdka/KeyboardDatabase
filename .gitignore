@@ -1,3 +1,5 @@
 keebs/site.db
 keebs/__pycache__/
 .idea/
+*.db
+keebs/static/images/

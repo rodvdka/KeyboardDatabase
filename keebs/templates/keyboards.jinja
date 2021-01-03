@@ -10,7 +10,7 @@
         <div class="content-section">
             <a class="mr-2" href="#">{{ k.brand }}</a><small>{{ k.model }}</small>
             <hr class="divider"/>
-            <h2><a class="article-title" href="#">{{ k.name }}</a></h2>
+            <h2><a class="article-title" href="{{ url_for('keyboard', keyboard_id=k.id) }}">{{ k.name }}</a></h2>
             <p>{{ k.name }}</p>
         </div>
     {% endfor %}
