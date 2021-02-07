@@ -1,31 +1,16 @@
 body {
   background: #fafafa;
   color: #333333;
-  margin-top: 5rem;
+  margin: 50px 0 0 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.navbar {
-  background-color: #5f788a;
-}
-
-.content-section {
-  background: #ffffff;
-  padding: 10px 20px;
-  border: 1px solid #dddddd;
-  border-radius: 3px;
-  margin-bottom: 20px;
-}
-
-.article-title {
-  color: #444444;
-}
-
-a.article-title:hover {
-  color: #428bca;
-  text-decoration: none;
+.border {
+  border: 1px solid #C4C4C4;
+  border-radius: 4px 4px 4px 4px;
 }
 
 .divider {
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
 }

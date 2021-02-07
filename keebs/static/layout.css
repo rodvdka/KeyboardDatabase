@@ -1,0 +1,81 @@
+/* Navigation */
+nav {
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #676f86;
+}
+
+#nav-container {
+    width: 60%;
+    margin: 0 0 0 15%;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    line-height: 50px;
+	color: #fff;
+}
+
+nav a:hover {
+	
+}
+
+.navbar-brand {
+    font-size: 20px;
+}
+
+.navbar-link {
+    padding: 0 20px 0 0;
+}
+
+.navbar-link-right {
+    float: right;
+    padding: 0 0 0 20px;
+}
+
+/* Content */
+
+#container {
+    width: 60%;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 0 0 0;
+    margin: 0 0 0 15%; /* Account for grid gap when centering main contant div*/
+  }
+
+#content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.item {
+    background: #ffffff;
+    padding: 5px;
+  }
+  
+  .item-title {
+    color: #444444;
+  }
+  
+  .item-title:hover {
+    color: #428bca;
+    text-decoration: none;
+  }
+
+/* Sidebar */
+
+#sidebar {
+    height: fit-content;
+    background-color: #fff;
+    padding: 5px 5px 5px 5px;
+}
