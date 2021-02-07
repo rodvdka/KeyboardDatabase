@@ -12,12 +12,6 @@ class InsertKeyboardForm(FlaskForm):
     image = FileField("Image", validators=[FileAllowed(["jpg", "png"])])
     submit = SubmitField("Submit")
 
-class InsertKeysetForm(FlaskForm):
-    kw = {"title": "Keyset Form", "id": "keyset-form"}
-    brand = StringField("Brand", validators=[DataRequired(), Length(min=2, max=64)])
-    name = StringField("Keyset Name", validators=[DataRequired(), Length(min=2, max=64)])
-    submit = SubmitField("Submit")
-
 class SearchForm(FlaskForm):
     kw = {"title": "Search Form", "id": "search-form"}
     search = StringField("Search", validators=[DataRequired(), Length(min=2, max=64)])

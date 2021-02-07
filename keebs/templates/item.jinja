@@ -7,10 +7,10 @@
 {% endblock sidebar %}
 {% block content %}
     <div class="content-section">
-        <a class="mr-2" href="#">{{ keyboard.brand }}</a><small>{{ keyboard.model }}</small>
+        <a class="mr-2" href="#">{{ item.brand }}</a><small>{{ item.model }}</small>
         <hr class="divider"/>
-        <h2><a class="article-title" href="#">{{ keyboard.name }}</a></h2>
-        <p>{{ keyboard.name }}</p>
-        <img src="{{ url_for('static', filename='images/keyboard/' ~ keyboard.id ~ '.jpg') }}">
+        <h2><a class="article-title" href="#">{{ item.name }}</a></h2>
+        <p>{{ item.name }}</p>
+        <img src="{{ url_for('static', filename='images/item/' ~ item.id ~ '.jpg') }}">
     </div>
 {% endblock content %}
