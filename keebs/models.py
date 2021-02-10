@@ -5,14 +5,11 @@ class Keyboard(db.Model):
     brand = db.Column(db.String(64), nullable=False)
     name = db.Column(db.String(64), nullable=False)
     model = db.Column(db.String(64), nullable=False, unique=True)
+    switch = db.Column(db.String(64), nullable=False)
+    desc = db.Column(db.String(256), nullable=False)
+    quantity = db.Column(db.Integer, nullable=False)
+    price = db.Column(db.Integer, nullable=False)
+    image = db.Column(db.Text)
 
     def __repr__(self):
-        return f"Keyboard({self.brand}, {self.name}, {self.model})"
-
-def resetTempData():
-    print("Resetting Temp Data")
-    db.drop_all()
-    db.session.add(Keyboard(brand="IBM", name="Model M SSK Industrial Mopar", model="1395682"))
-    db.session.add(Keyboard(brand="NEC", name="PC-8801 MKII SR", model="8801"))
-    db.session.add(Keyboard(brand="IBM", name="5251 Beamspring", model="5251"))
-    db.session.commit()
+        return f"Keyboard({self.brand}, {self.name}, {self.model}, {self.switch}, {self.desc}, {self.quantity}, {self.price})"

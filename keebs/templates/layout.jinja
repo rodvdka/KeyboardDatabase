@@ -1,3 +1,4 @@
+{% from "macros/form_helper.jinja" import render_form %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='layout.css') }}">
     <script type="text/javascript" src="{{ url_for('static', filename='main.js') }}"></script>
-    <title>{% if title %} Keebs - {{ title}} {% else %} Keebs {% endif %}</title>
+    <title>{% if title %} Keebs - {{title}} {% else %} Keebs {% endif %}</title>
 </head>
 <body>
     <nav>
@@ -15,11 +16,11 @@
                 <a class="navbar-brand" href="{{ url_for('index') }}">Keebs</a>
             </div>
             <div>
-                <a class="navbar-link" href="{{ url_for('inventory') }}">Inventory</a>
-                <a class="navbar-link" href="{{ url_for('index') }}">Unused</a>
-                <a class="navbar-link" href="{{ url_for('about') }}">About</a>
-                <a class="navbar-link-right" href="{{ url_for('insert') }}">Insert</a>
-                <a class="navbar-link-right" href="{{ url_for('search') }}">Search</a>
+                <a class="navbar-main" href="{{ url_for('inventory') }}">Inventory</a>
+                <a class="navbar-main" href="{{ url_for('gallery') }}">Gallery</a>
+                <a class="navbar-main" href="{{ url_for('about') }}">About</a>
+                {{ render_form(search_form, class="navbar-right", classes={"input": "search-input"}) }}
+                <a class="navbar-right" href="{{ url_for('insert') }}">Insert</a>
             </div>
         </div>
     </nav>

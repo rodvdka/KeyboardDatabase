@@ -1,7 +1,7 @@
 {% set form_def = {
-    "all": "form-group form-control",
-    "submit": "form-group btn btn-outline-info",
-    "image": "form-group form-control-file"
+    "all": "",
+    "submit": "",
+    "image": ""
 } %}
 
 {% macro add_form_def(type, value) %}
@@ -10,11 +10,13 @@
 
 {% macro render_form(form) %}
     <form method="POST" action="" enctype="multipart/form-data" id="{{ form.kw.id }}" class="{{ form.kw.class }} {{ kwargs.class }}">
-        <h4>{{ form.kw.title }}</h4>
+        {% if form.kw.title %}
+            <h4>{{ form.kw.title }}</h4>
+        {% endif %}
         {{ form.hidden_tag() }}
         {% for field in form if not field.type == "CSRFTokenField" %}
-            {% if field.type != "SubmitField" %}
-                {{ field.label }}                
+            {% if field.type != "SubmitField" and not form.kw.ignore_labels %}
+                {{ field.label }}
             {% endif %}
             {{ render_field(field, kwargs.classes) }}
         {% endfor %}

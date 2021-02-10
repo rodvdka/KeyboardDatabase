@@ -8,6 +8,7 @@
 {% block content %}
     {% for i in items %}
         <div class="item border">
+            <img src="data:;base64,{{i.image}}" alt="{{i.model}} Keyboard">
             <a href="#">{{ i.brand }}</a><small>{{ i.model }}</small>
             <hr class="divider"/>
             <h2><a class="item-title" href="{{ url_for('item', item_id=i.id) }}">{{ i.name }}</a></h2>

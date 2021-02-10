@@ -1,53 +1,61 @@
+import base64
 import os
 
 from PIL import Image
-from keebs import app, SearchForm, db
+from keebs import app, SearchForm, db, helper
 from keebs.forms import InsertKeyboardForm
 from keebs.models import Keyboard
-from flask import render_template, flash
+from flask import render_template, flash, request
+
+def render(template, **kwargs):
+    search_form = SearchForm()
+    if search_form.validate_on_submit():
+        pass
+    return render_template(template, search_form=search_form, **kwargs)
 
 @app.route("/")
 def index():
-    return render_template("index.jinja")
+    return render("index.jinja")
 
 @app.route("/inventory")
 def inventory():
-    return render_template("inventory.jinja", items=Keyboard.query.all())
+    return render("inventory.jinja", items=Keyboard.query.all())
 
 @app.route("/item/<int:item_id>")
 def item(item_id):
-    return render_template("item.jinja", item=Keyboard.query.get_or_404(item_id))
+    return render("item.jinja", item=Keyboard.query.get_or_404(item_id))
+
+@app.route("/gallery")
+def gallery():
+    return render("gallery.jinja")
 
 @app.route("/about")
 def about():
-    return render_template("about.jinja")
+    return render("about.jinja")
 
 @app.route("/insert", methods=["GET", "POST"])
 def insert():
-    keyboard_form = InsertKeyboardForm()
-    if keyboard_form.validate_on_submit():
-        kb = Keyboard(brand=keyboard_form.brand.data, name=keyboard_form.name.data, model=keyboard_form.model.data)
+    form = InsertKeyboardForm()
+    if form.validate_on_submit():
+        img64 = helper.to_img64(request.files["image"])
+        kb = Keyboard(brand=form.brand.data, name=form.name.data, model=form.model.data, switch=form.switch.data, desc=form.desc.data, quantity=form.quantity.data, price=form.price.data, image=img64)
         db.session.add(kb)
         db.session.commit()
-        save_image(kb.id, keyboard_form.image.data)
-        flash(f"Submitted {keyboard_form.name.data}!")
-    #elif keyset_form.validate_on_submit():
-    #    db.session.add(Keyset(brand=keyset_form.brand.data, name=keyset_form.name.data))
-    #    db.session.commit()
-    #    flash(f"Submitted {keyset_form.name.data}!")
-    return render_template("insert.jinja", keyboard_form=keyboard_form)
+        flash(f"Submitted {form.name.data}!")
+    return render("insert.jinja", keyboard_form=form)
 
-@app.route("/search", methods=["GET", "POST"])
+@app.route("/search")
 def search():
+    query = request.args("search")
     form = SearchForm()
-    if form.validate_on_submit():
-        flash(f"Searching for {form.search.data}!")
-        #return redirect(url_for("home"))
-    print(form.__dict__)
-    return render_template("search.jinja", title="search", form=form)
+    # if form.validate_on_submit():
+    #     flash(f"Searching for {form.search.data}!")
+    #     #return redirect(url_for("home"))
+    # print(form.__dict__)
+    return render("search.jinja", title="search", form=form, query=query)
 
-def save_image(id, data):
-    img = Image.open(data)
-    #img.thumbnail(125, 125)
-    path = os.path.join(app.root_path, "static/images/keyboard/", str(id) + os.path.splitext(data.filename)[1])
-    img.save(path)
+if os.environ["INITDB"] == "1":
+    print("TEST")
+    db.create_all()
+    db.session.add(Keyboard(brand="IBM", name="5251 Beamspring", model="5251", switch="Beamspring", desc="Terminal item", quantity=1, price=1))
+    db.session.commit()
