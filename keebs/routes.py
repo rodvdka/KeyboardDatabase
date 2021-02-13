@@ -3,6 +3,35 @@ from keebs.forms import KeyboardForm, AddCartForm
 from keebs.helper import to_img64, add_to_cart, check_session, purge_cart
 from keebs.models import Keyboard
 from flask import render_template, flash, request, session
+from typing import List
+
+
+from dataclasses import dataclass
+
+
+@dataclass
+class CartItem:
+    """Class for the cart item
+    
+    Use [item.keyboard.name for item in session.cart]
+
+    """
+    item: str
+    quantity: int = 0
+
+    def keyboard(self):
+        if self._keyboard:
+            return self._keyboard
+        self._keyboard = Keyboard.query.get_or_404(self.item)
+        return self._keyboard
+
+    def to_dict(self):
+        return self._item.to_dict()
+
+@dataclass
+class Session:
+    """Class for the session"""
+    cart: List[CartItem]
 
 
 def render(template, **kwargs):
@@ -53,9 +82,8 @@ def insert():
 @app.route("/cart")
 def cart():
     entries = {}
-    for x in session["cart"].keys():
-        entries[x] = {"item": Keyboard.query.get_or_404(x), "quantity": session["cart"][x]["quantity"]}
-    return render("cart.jinja", entries=entries.values())
+    session_items = Session(session)
+    return render("cart.jinja", entries=session_items.cart)
 
 @app.route("/update/<int:item_id>", methods=["GET", "POST"])
 def update(item_id):
