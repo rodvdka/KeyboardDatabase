@@ -54,6 +54,10 @@ def insert():
 def cart():
     # entries = {}
     # for x in session["cart"].keys():
+    for x in session["cart"].keys():
+        item = Keyboard.query.one_or_none()
+        if item:
+            entries[x] = {"item":  item.to_dict(), "quantity": session["session"]["cart"][x]["quantity"}
     #   entries[x] = {"item": Keyboard.query.get_or_404(x), "quantity": session["cart"][x]["quantity"]}
 
     return render("cart.jinja", entries=list(session["cart"].values()))
