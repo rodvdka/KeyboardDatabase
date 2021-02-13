@@ -50,13 +50,11 @@ def insert():
         flash(f"Submitted {form.name.data}!")
     return render("insert.jinja", form=form)
 
-    # entries = {}
-    # for x in session["cart"].keys():
-    #   entries[x] = {"item": session["cart"][x]["item"], "quantity": session["cart"][x]["quantity"]}
-    #
-
 @app.route("/cart")
 def cart():
+    # entries = {}
+    # for x in session["cart"].keys():
+    #   entries[x] = {"item": Keyboard.query.get_or_404(x), "quantity": session["cart"][x]["quantity"]}
 
     return render("cart.jinja", entries=list(session["cart"].values()))
 
