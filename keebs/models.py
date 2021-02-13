@@ -14,6 +14,9 @@ class Keyboard(db.Model):
     price = db.Column(db.Integer, nullable=False)
     img_small = db.Column(db.Text)
     img_large = db.Column(db.Text)
+    
+    def _to_dict(self):
+        return dict(id=self.id, brand=self.brand)
 
     def __repr__(self):
         return f"Keyboard({self.brand}, {self.name}, {self.model}, {self.switch}, {self.desc}, {self.quantity}, {self.price})"
