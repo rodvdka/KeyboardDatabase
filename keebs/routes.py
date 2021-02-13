@@ -52,11 +52,10 @@ def insert():
 
 @app.route("/cart")
 def cart():
-    # entries = {}
-    # for x in session["cart"].keys():
-    #   entries[x] = {"item": Keyboard.query.get_or_404(x), "quantity": session["cart"][x]["quantity"]}
-
-    return render("cart.jinja", entries=list(session["cart"].values()))
+    entries = {}
+    for x in session["cart"].keys():
+        entries[x] = {"item": Keyboard.query.get_or_404(x), "quantity": session["cart"][x]["quantity"]}
+    return render("cart.jinja", entries=entries.values())
 
 @app.route("/update/<int:item_id>", methods=["GET", "POST"])
 def update(item_id):

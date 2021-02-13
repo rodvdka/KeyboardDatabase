@@ -32,7 +32,7 @@ def add_to_cart(item):
     if str(item.id) in session["cart"]:
         session["cart"][str(item.id)]["quantity"] += 1
     else:
-        session["cart"][str(item.id)] = {"item": item, "quantity": 1}
+        session["cart"][str(item.id)] = {"item": "x", "quantity": 1}
 
     session.modified = True
 
