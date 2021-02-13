@@ -7,12 +7,15 @@
 {% endblock sidebar %}
 {% block content %}
     {% for i in items %}
-        <div class="item border">
-            <img src="data:;base64,{{i.image}}" alt="{{i.model}} Keyboard">
-            <a href="#">{{ i.brand }}</a><small>{{ i.model }}</small>
-            <hr class="divider"/>
-            <h2><a class="item-title" href="{{ url_for('item', item_id=i.id) }}">{{ i.name }}</a></h2>
-            <p>{{ i.name }}</p>
+        <div class="item">
+            <div class="item-image">
+                <img class="item-img" src="data:;base64,{{i.img_small}}" alt="{{i.model}} Keyboard">
+            </div>
+            <div class="item-details">
+                <h4><a class="item-title" href="{{ url_for('item', item_id=i.id) }}">{{ i.name }}</a></h4>
+                <h4>${{i.price}}</h4>
+                {# <p>{{ i.desc }}</p> #}
+            </div>
         </div>
     {% endfor %}
 {% endblock content %}

@@ -11,6 +11,8 @@
         <hr class="divider"/>
         <h2><a class="article-title" href="#">{{ item.name }}</a></h2>
         <p>{{ item.name }}</p>
-        <img src="{{ url_for('static', filename='images/item/' ~ item.id ~ '.jpg') }}">
+        <img src="data:;base64,{{item.img_large}}" alt="{{item.model}} Keyboard">
+        <a href="{{ url_for('update', item_id=item.id) }}">Update</a>
+        {{ render_form(cart_form) }}
     </div>
 {% endblock content %}

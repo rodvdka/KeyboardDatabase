@@ -1,3 +1,6 @@
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import relationship
+
 from keebs import db
 
 class Keyboard(db.Model):
@@ -9,7 +12,8 @@ class Keyboard(db.Model):
     desc = db.Column(db.String(256), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     price = db.Column(db.Integer, nullable=False)
-    image = db.Column(db.Text)
+    img_small = db.Column(db.Text)
+    img_large = db.Column(db.Text)
 
     def __repr__(self):
         return f"Keyboard({self.brand}, {self.name}, {self.model}, {self.switch}, {self.desc}, {self.quantity}, {self.price})"

@@ -1,4 +1,8 @@
 {% extends "layout.jinja" %}
 {% block content %}
-    <h1>Gallery Page</h1>
+    {% for i in items %}
+        <div class="item border">
+            <img src="data:;base64,{{i.img_small}}" alt="{{i.model}} Keyboard">
+        </div>
+    {% endfor %}
 {% endblock content %}

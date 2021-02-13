@@ -1,0 +1,13 @@
+{% extends "layout.jinja" %}
+{% block sidebar %}
+    <p>A list of fancy keyboards</p>
+    <a>Vintage</a>
+    <a>Customs</a>
+    <a>OEM</a>
+{% endblock sidebar %}
+{% block content %}
+    {% for i in entries %}
+        {# <p>{{i.name}} - {{quantities[i.id ~ ""]}}</p> #}
+        <p>{{i["item"].name}} - {{i["quantity"]}}</p> 
+    {% endfor %}
+{% endblock content %}
